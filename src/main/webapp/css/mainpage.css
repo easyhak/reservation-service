@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.visual_img .item {
+	width: 414px !important;
+}
+.visual_img .item img {
+	width: 414px;
+	height: 177px;
+}
+.container_visual {
+	overflow: hidden;
+}
