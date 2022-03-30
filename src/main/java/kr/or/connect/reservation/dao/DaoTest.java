@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Configuration;
 
 import kr.or.connect.reservation.config.ApplicationConfig;
-import kr.or.connect.reservation.dto.MainDto;
+import kr.or.connect.reservation.dto.ProductDisplayInfo;
 
 
 public class DaoTest {
@@ -25,9 +25,9 @@ public class DaoTest {
 //		guestbook.setRegdate(new Date());
 //		Long id = guestbookDao.insert(guestbook);
 //		System.out.println("id : " + id);
-		MainDao maindao = ac.getBean(MainDao.class);
-		List<MainDto> list = maindao.selectAll(0, 3);
-		for(MainDto l: list) {
+		ProductDisplayInfoDao maindao = ac.getBean(ProductDisplayInfoDao.class);
+		List<ProductDisplayInfo> list = maindao.selectAll(0, 3);
+		for(ProductDisplayInfo l: list) {
 			System.out.println(l);
 		}
 		

@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.CategoryDao;
-import kr.or.connect.reservation.dao.MainDao;
+import kr.or.connect.reservation.dao.ProductDisplayInfoDao;
 import kr.or.connect.reservation.dao.PromotionDao;
 import kr.or.connect.reservation.dto.Category;
-import kr.or.connect.reservation.dto.MainDto;
+import kr.or.connect.reservation.dto.ProductDisplayInfo;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.ReservationService;
 
@@ -18,7 +18,7 @@ import kr.or.connect.reservation.service.ReservationService;
 public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired 
-	MainDao mainDao;
+	ProductDisplayInfoDao mainDao;
 	@Autowired
 	PromotionDao promotionDao;
 	@Autowired
@@ -26,14 +26,14 @@ public class ReservationServiceImpl implements ReservationService{
 	
 	@Override
 	@Transactional
-	public List<MainDto> getAllProduct(Integer start){
+	public List<ProductDisplayInfo> getAllProduct(Integer start){
 		return mainDao.selectAll(start, LIMIT);
 	}
 	
 	@Override
 	@Transactional
-	public List<MainDto> getProductByCategory(Integer categoryId, Integer start) {
-		List<MainDto> prdList = mainDao.selectByCategory(start, LIMIT, categoryId);
+	public List<ProductDisplayInfo> getProductByCategory(Integer categoryId, Integer start) {
+		List<ProductDisplayInfo> prdList = mainDao.selectByCategory(start, LIMIT, categoryId);
 		return prdList;
 	}
 	

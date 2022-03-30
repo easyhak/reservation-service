@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.connect.reservation.dto.Category;
-import kr.or.connect.reservation.dto.MainDto;
+import kr.or.connect.reservation.dto.ProductDisplayInfo;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.ReservationService;
 import kr.or.connect.reservation.service.impl.ReservationServiceImpl;
@@ -25,7 +25,7 @@ public class ReservationApiController {
 	@GetMapping("/products")
 	public Map<String, Object> products(@RequestParam(name = "start", required = false, defaultValue = "0") int start,
 			@RequestParam(name = "categoryId", required = false, defaultValue = "0") int categoryId) {
-		List<MainDto> plist;
+		List<ProductDisplayInfo> plist;
 		int totalCount = 0;
 		List<Category> clist = reservationService.getCategories();
 
