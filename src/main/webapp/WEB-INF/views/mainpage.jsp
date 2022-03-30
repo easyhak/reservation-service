@@ -112,11 +112,16 @@
                     <ul class="lst_event_box second">
                     	<c:forEach items="${productList}" var="product" begin="2">
                         <li class="item">
-                            <a href="detail.html" class="item_book">
-                                <div class="item_preview"> <img alt="${product.description }" class="img_thumb" src="${product.saveFileName }"><span></span> </div>
+                            <a href="detail.html?id=${product.productId}" class="item_book">
+                                <div class="item_preview"> 
+                                <img alt="${product.description }" class="img_thumb" src="${product.saveFileName }">                                    
+                                <span class="img_border"></span> 
+                                </div>
                                 <div class="event_txt">
-                                    <h4 class="event_txt_tit"> <span>${product.description }</span> <small class="sm">${product.placeName }</small> </h4>
-                                    <p class="event_txt_dsc">${product.content }</p>
+                                    <h4 class="event_txt_tit"> <span>${product.description}</span> <small class="sm">${product.placeName }</small> </h4>
+                                    <p class="event_txt_dsc">
+                                    ${product.content }
+                                    </p>
                                 </div>
                             </a>
                         </li>
