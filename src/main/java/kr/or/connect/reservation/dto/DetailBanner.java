@@ -5,15 +5,16 @@ public class DetailBanner {
 	private int productId;
 	private String description;
 	private String saveFileName;
+	private String content;
 	
 	public DetailBanner() {
 		
 	}
-	public DetailBanner(int productId, String description, String saveFileName) {
-		super();
+	public DetailBanner(int productId, String description, String content, String saveFileName) {
 		this.productId = productId;
 		this.description = description;
 		this.saveFileName = saveFileName;
+		this.content = content;
 	}
 	public int getProductId() {
 		return productId;
@@ -38,10 +39,17 @@ public class DetailBanner {
 	public void setSaveFileName(String saveFileName) {
 		this.saveFileName = saveFileName;
 	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	@Override
 	public String toString() {
 		return "DetailBanner [productId=" + productId + ", description=" + description + ", saveFileName="
-				+ saveFileName + "]";
+				+ saveFileName + ", content=" + content + "]";
 	}
+	
 	
 }
