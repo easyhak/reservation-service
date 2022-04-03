@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.DetailBanner;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.ReservationService;
@@ -42,6 +46,7 @@ public class ReservationController {
 	public String bookingLogin() {
 		return "bookinglogin";
 	}
+	
 	@RequestMapping(value = "/category", method = {RequestMethod.POST })	
 	@ResponseBody
 	public Map<String,Object> tabChange(@RequestParam(name = "cid", required = true, defaultValue = "0") int id) {
@@ -90,5 +95,13 @@ public class ReservationController {
 	    map.put("productList", ProductDisplayList);
 	    map.put("totalCount", totalCount);
 		return map;
+	}
+	
+	@GetMapping(path = "/detail")
+	public String detailPage(HttpServletRequest request, ModelMap modelMap) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		List<DetailBanner> detailBannerList = reservationService.getDetailBanners(id);
+		modelMap.addAttribute("detailBannerList",detailBannerList);
+		return "detail";
 	}
 }

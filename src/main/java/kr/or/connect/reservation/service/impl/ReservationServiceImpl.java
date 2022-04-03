@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.CategoryDao;
+import kr.or.connect.reservation.dao.DetailBannerDao;
 import kr.or.connect.reservation.dao.ProductDisplayInfoDao;
 import kr.or.connect.reservation.dao.PromotionDao;
 import kr.or.connect.reservation.dto.Category;
+import kr.or.connect.reservation.dto.DetailBanner;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
 import kr.or.connect.reservation.dto.Promotion;
 import kr.or.connect.reservation.service.ReservationService;
@@ -23,6 +25,8 @@ public class ReservationServiceImpl implements ReservationService{
 	PromotionDao promotionDao;
 	@Autowired
 	CategoryDao categoryDao;
+	@Autowired
+	DetailBannerDao detailBannerDao;
 	
 	@Override
 	@Transactional
@@ -48,4 +52,10 @@ public class ReservationServiceImpl implements ReservationService{
 	public List<Category> getCategories() {
 		return categoryDao.selectCategory();
 	}
+
+	@Override
+	public List<DetailBanner> getDetailBanners(Integer id) {
+		return detailBannerDao.selectImageById(id);
+	}
+	
 }

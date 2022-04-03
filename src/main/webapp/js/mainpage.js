@@ -1,12 +1,28 @@
+$.ajax({
+	url : "category",
+	type : 'post',
+	data : {
+		cid : 0
+	},
+	success : function(data) {
+		$('.event_lst_txt .pink').text(data.count+"개");
+	},
+	error : function() {
+		alert("error");
+	}
+});	
+// 이런 식으로 jsp 파일에 jstl넣지 않고 ajax로 초기값 가져오도록 수정하도록 한다. 
 $(function(){
 	let banner_count = $('.visual_img').children().length;
 	console.log(banner_count)
 	v_width = banner_count * 414 + "px";
 	$('.visual_img').css("width",v_width);
 	slideShow(banner_count);
+	
 	tabClick();
 	moreClick();
 })
+
 let Top = document.querySelector('.gototop')
 
 Top.addEventListener('click',function(e){
@@ -60,6 +76,7 @@ function sendCategoryId(id){
 			var right = document.querySelectorAll('.lst_event_box')[1];
 			let leftText = [];
 			let rightText = [];
+			// handlebar로 수정하기
 			for (var i = 0; i<2;i++){
 				text = $('#itemList').html();
 				text = text.replace('{productId}',data.productList[i].productId)
@@ -124,6 +141,7 @@ function moreClick(){
 				var right = document.querySelectorAll('.lst_event_box')[1];
 				let leftText = [];
 				let rightText = [];
+				//handlebar로 수정하기
 				if (data.productList.length <= 2){
 					for (var i = 0, len = data.productList.length; i<len; i++){
 						text = $('#itemList').html();

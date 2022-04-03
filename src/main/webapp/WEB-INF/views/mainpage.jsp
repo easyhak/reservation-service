@@ -23,7 +23,7 @@
                     <a href="https://m.naver.com/" class="lnk_logo" title="네이버"> <span class="spr_bi ico_n_logo">네이버</span> </a>
                     <a href="./myreservation.html" class="lnk_logo" title="예약"> <span class="spr_bi ico_bk_logo">예약</span> </a>
                 </h1>
-                <a href="./bookinglogin.html" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span> </a>
+                <a href="./bookinglogin" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span> </a>
             </header>
         </div>
         <hr>
@@ -89,13 +89,13 @@
                 </ul>
             </div>
             <div class="section_event_lst">
-                <p class="event_lst_txt">바로 예매 가능한 행사가 <span class="pink">${count }개</span> 있습니다</p>
+                <p class="event_lst_txt">바로 예매 가능한 행사가 <span class="pink"></span> 있습니다</p>
                 <div class="wrap_event_box">
                     <!-- [D] lst_event_box 가 2컬럼으로 좌우로 나뉨, 더보기를 클릭할때마다 좌우 ul에 li가 추가됨 -->
                     <ul class="lst_event_box first">
                     	<c:forEach items="${productList}" var="product" end="1">
                         <li class="item">
-                            <a href="detail.html?id=${product.productId}" class="item_book">
+                            <a href="./detail?id=${product.productId}" class="item_book">
                                 <div class="item_preview"> 
                                 <img alt="${product.description }" class="img_thumb" src="${product.saveFileName }">                                    
                                 <span class="img_border"></span> 
@@ -112,7 +112,7 @@
                     <ul class="lst_event_box second">
                     	<c:forEach items="${productList}" var="product" begin="2">
                         <li class="item">
-                            <a href="detail.html?id=${product.productId}" class="item_book">
+                            <a href="detail?id=${product.productId}" class="item_book">
                                 <div class="item_preview"> 
                                 <img alt="${product.description }" class="img_thumb" src="${product.saveFileName }">                                    
                                 <span class="img_border"></span> 
@@ -161,7 +161,7 @@
 
     <script type="rv-template" id="itemList">
 		<li class="item">
-        	<a href="detail.html?id={productId}" class="item_book">
+        	<a href="detail?id={productId}" class="item_book">
             	<div class="item_preview"> 
                 <img alt="{description}" class="img_thumb" src="{saveFileName}">                                    
                 <span class="img_border"></span> 
