@@ -1,4 +1,5 @@
 $(function(){
+    
     /* 슬라이드 */
     let banner_count = $('.detail_swipe').children().length;
     $('.figure_pagination span.total').text(banner_count) // 위에 숫자 
@@ -36,6 +37,7 @@ $(function(){
         })
         $('.figure_pagination span.now').text(count+1);
     })
+
 
     /* 펼쳐보기 클릭 */
     $('a._open').click(function(){

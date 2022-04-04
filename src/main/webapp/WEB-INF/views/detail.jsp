@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -66,10 +68,12 @@
                                     </c:forEach>
                                 </ul>
                             </div>
+                            <!--사진이 하나면 화살표 안보이게 -->
+                            <c:if test = "${fn:length(detailBannerList) != 1}"> 
                             <div class="prev">
                                 <div class="prev_inn">
                                     <a href="javascript:void(0)" class="btn_prev" title="이전">
-                                        <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
+                                        <!-- [D] 첫 이미지 이면 off 클래스 추가 // 왜 굳이..?-->
                                         <i class="spr_book2 ico_arr6_lt off"></i>
                                     </a>
                                 </div>
@@ -81,6 +85,7 @@
                                     </a>
                                 </div>
                             </div>
+                            </c:if>
                         </div>
                     </div>
                     <div class="group_btn_goto"  style="display: none;">
