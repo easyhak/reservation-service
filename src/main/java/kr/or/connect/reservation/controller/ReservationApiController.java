@@ -54,7 +54,7 @@ public class ReservationApiController {
 
 	@GetMapping("/promotions")
 	public List<MainBanner> promotions() {
-		List<MainBanner> items = reservationService.getPromotions();
+		List<MainBanner> items = reservationService.getMainBanners();
 		return items;
 	}
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.DetailBanner;
+import kr.or.connect.reservation.dto.DetailContentPromotion;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
 import kr.or.connect.reservation.dto.MainBanner;
 import kr.or.connect.reservation.service.ReservationService;
@@ -51,7 +52,7 @@ public class ReservationController {
 	@ResponseBody
 	public Map<String,Object> tabChange(@RequestParam(name = "cid", required = true, defaultValue = "0") int id) {
 		List<Category> categoryList = reservationService.getCategories();
-		List<MainBanner> mainBannerList = reservationService.getPromotions();;
+		List<MainBanner> mainBannerList = reservationService.getMainBanners();;
 		List<ProductDisplayInfo> ProductDisplayList;
 		int totalCount = 0;
 		
@@ -101,7 +102,15 @@ public class ReservationController {
 	public String detailPage(HttpServletRequest request, ModelMap modelMap) {
 		int id = Integer.parseInt(request.getParameter("id"));
 		List<DetailBanner> detailBannerList = reservationService.getDetailBanners(id);
+		DetailContentPromotion contentPromtion = reservationService.getContentPromotion(id);
+		
+		String content = contentPromtion.getContent();
+		int promotionId = contentPromtion.getPromotionId();
+		
 		modelMap.addAttribute("detailBannerList",detailBannerList);
+		modelMap.addAttribute("content",content);
+		modelMap.addAttribute("promotion",promotionId);
+		
 		return "detail";
 	}
 }

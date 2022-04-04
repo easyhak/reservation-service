@@ -96,14 +96,14 @@
                     <!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
                     <div class="store_details close3">
                         <p class="dsc">
-                            ${detailBannerList[0].content}
+                            ${content}
                         </p>
                     </div>
-
                     <!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->
                     <a href="javascript:void(0)" class="bk_more _open"> <span class="bk_more_txt">펼쳐보기</span> <i class="fn fn-down2"></i> </a>
                     <a href="javascript:void(0)" class="bk_more _close" style="display: none;"> <span class="bk_more_txt">접기</span> <i class="fn fn-up2"></i> </a>
                 </div>
+                <c:if test="${promotion ne 0}" > <!-- 이벤트가 있으면 보이게 한다 -->
                 <div class="section_event">
                     <div class="event_info_box">
                         <div class="event_info_tit">
@@ -114,6 +114,7 @@
                         </div>
                     </div>
                 </div>
+                </c:if>
                 <div class="section_btn"> <button type="button" class="bk_btn"> <i class="fn fn-nbooking-calender2"></i> <span>예매하기</span> </button> </div>
                 <div class="section_review_list">
                     <div class="review_box">

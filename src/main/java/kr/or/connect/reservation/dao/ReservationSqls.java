@@ -27,6 +27,7 @@ public class ReservationSqls {
 			+ "left join product_image on product.id = product_id "
 			+ "left join file_info on product_image.file_id = file_info.id "
 			+ "where product.id = :id and (type = \"ma\" or type = \"et\")";
-	public static final String SELECT_PROMOTION_BY_ID = "SELECT * FROM promotion "
-			+ "where product_id = :id" ;
+	public static final String SELECT_CONTENT_PROMOTION_BY_ID = "SELECT product.id productId, description, content,  if (promotion.id, promotion.id, 0) promotionId FROM product "
+			+ "left join promotion on promotion.product_id = product.id "
+			+ "where product.id = :id";
 }

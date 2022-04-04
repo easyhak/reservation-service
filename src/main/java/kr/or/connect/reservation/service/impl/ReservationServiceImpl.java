@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.connect.reservation.dao.CategoryDao;
 import kr.or.connect.reservation.dao.DetailBannerDao;
+import kr.or.connect.reservation.dao.DetailContentPromotionDao;
 import kr.or.connect.reservation.dao.ProductDisplayInfoDao;
 import kr.or.connect.reservation.dao.MainBannerDao;
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.DetailBanner;
+import kr.or.connect.reservation.dto.DetailContentPromotion;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
 import kr.or.connect.reservation.dto.MainBanner;
 import kr.or.connect.reservation.service.ReservationService;
@@ -27,6 +29,8 @@ public class ReservationServiceImpl implements ReservationService{
 	CategoryDao categoryDao;
 	@Autowired
 	DetailBannerDao detailBannerDao;
+	@Autowired
+	DetailContentPromotionDao detailContentPromotionDao;
 	
 	@Override
 	@Transactional
@@ -48,6 +52,7 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 	
 	@Override
+	@Transactional
 	public List<Category> getCategories() {
 		return categoryDao.selectCategory();
 	}
@@ -55,6 +60,11 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public List<DetailBanner> getDetailBanners(Integer id) {
 		return detailBannerDao.selectImageById(id);
+	}
+	@Override
+	@Transactional
+	public DetailContentPromotion getContentPromotion(Integer id) {
+		return detailContentPromotionDao.selectContentPromotionById(id);
 	}
 	
 }
