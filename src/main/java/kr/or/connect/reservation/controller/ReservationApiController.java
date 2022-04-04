@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
-import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.MainBanner;
 import kr.or.connect.reservation.service.ReservationService;
 import kr.or.connect.reservation.service.impl.ReservationServiceImpl;
 
@@ -53,8 +53,8 @@ public class ReservationApiController {
 	}
 
 	@GetMapping("/promotions")
-	public List<Promotion> promotions() {
-		List<Promotion> items = reservationService.getPromotions();
+	public List<MainBanner> promotions() {
+		List<MainBanner> items = reservationService.getPromotions();
 		return items;
 	}
 }

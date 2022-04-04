@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.or.connect.reservation.dao.CategoryDao;
 import kr.or.connect.reservation.dao.DetailBannerDao;
 import kr.or.connect.reservation.dao.ProductDisplayInfoDao;
-import kr.or.connect.reservation.dao.PromotionDao;
+import kr.or.connect.reservation.dao.MainBannerDao;
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.DetailBanner;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
-import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.MainBanner;
 import kr.or.connect.reservation.service.ReservationService;
 
 @Service
@@ -22,7 +22,7 @@ public class ReservationServiceImpl implements ReservationService{
 	@Autowired 
 	ProductDisplayInfoDao mainDao;
 	@Autowired
-	PromotionDao promotionDao;
+	MainBannerDao mainBannerDao;
 	@Autowired
 	CategoryDao categoryDao;
 	@Autowired
@@ -43,9 +43,8 @@ public class ReservationServiceImpl implements ReservationService{
 	
 	@Override
 	@Transactional
-	public List<Promotion> getPromotions() {
-		List<Promotion> promoList = promotionDao.selectPromotionList();
-		return promoList;
+	public List<MainBanner> getMainBanners() {
+		return mainBannerDao.selectMainBannerList();
 	}
 	
 	@Override

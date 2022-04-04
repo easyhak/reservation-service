@@ -1,13 +1,13 @@
 package kr.or.connect.reservation.dto;
 
-public class Promotion {
+public class MainBanner {
 	private Integer id;
 	private Integer productId;
 	private String productImageUrl;
-	public Promotion() {
+	public MainBanner() {
 		
 	}
-	public Promotion(Integer id, Integer productId, String productImageUrl) {
+	public MainBanner(Integer id, Integer productId, String productImageUrl) {
 		super();
 		this.id = id;
 		this.productId = productId;
@@ -34,7 +34,7 @@ public class Promotion {
 	}
 	@Override
 	public String toString() {
-		return "Promotion [id=" + id + ", productId=" + productId + ", productImageUrl=" + productImageUrl + "]";
+		return "MainBanner [id=" + id + ", productId=" + productId + ", productImageUrl=" + productImageUrl + "]";
 	}
 
 }

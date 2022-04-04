@@ -9,17 +9,17 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import kr.or.connect.reservation.dto.Promotion;
+import kr.or.connect.reservation.dto.MainBanner;
 import static kr.or.connect.reservation.dao.ReservationSqls.*;
 @Repository
-public class PromotionDao {
+public class MainBannerDao {
 	private NamedParameterJdbcTemplate jdbc;
-	private RowMapper<Promotion> rowMapper = BeanPropertyRowMapper.newInstance(Promotion.class);
-	public PromotionDao(DataSource dataSource) {
+	private RowMapper<MainBanner> rowMapper = BeanPropertyRowMapper.newInstance(MainBanner.class);
+	public MainBannerDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 	}
 	
-	public List<Promotion> selectPromotionList(){
-		return jdbc.query(SELECT_PROMOTION, rowMapper);
+	public List<MainBanner> selectMainBannerList(){
+		return jdbc.query(SELECT_MAINBANNER, rowMapper);
 	}
 }
