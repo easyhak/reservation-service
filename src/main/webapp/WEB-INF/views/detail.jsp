@@ -43,6 +43,8 @@
                         </h1>
                         <a href="./myreservation.html" class="btn_my"> <span class="viewReservation" title="예약확인">예약확인</span> </a>
                     </header>
+                    <c:if test = "${fn:length(detailBannerList) != 1}">
+                    <!--사진이 하나면 화살표 안보이게 -->
                     <div class="pagination">
                         <div class="bg_pagination"></div>
                         <div class="figure_pagination">
@@ -50,6 +52,7 @@
                             <span class="num off">/ <span class="total">2</span></span>
                         </div>
                     </div>
+                    </c:if>
                     <div class="group_visual">
                         <div>
                             <div class="container_visual" style="width: 414px;">
