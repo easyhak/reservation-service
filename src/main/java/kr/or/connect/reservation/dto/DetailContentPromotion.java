@@ -2,6 +2,7 @@ package kr.or.connect.reservation.dto;
 
 public class DetailContentPromotion {
 	private int productId;
+	private int displayInfoId;
 	private String description;
 	private String content;
 	private int promotionId;
@@ -9,9 +10,12 @@ public class DetailContentPromotion {
 	public DetailContentPromotion() {
 		
 	}
-	
-	public DetailContentPromotion(int productId, String description, String content, int promotionId) {
+
+	public DetailContentPromotion(int productId, int displayInfoId, String description, String content,
+			int promotionId) {
+		super();
 		this.productId = productId;
+		this.displayInfoId = displayInfoId;
 		this.description = description;
 		this.content = content;
 		this.promotionId = promotionId;
@@ -23,6 +27,14 @@ public class DetailContentPromotion {
 
 	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+
+	public int getDisplayInfoId() {
+		return displayInfoId;
+	}
+
+	public void setDisplayInfoId(int displayInfoId) {
+		this.displayInfoId = displayInfoId;
 	}
 
 	public String getDescription() {
@@ -51,8 +63,8 @@ public class DetailContentPromotion {
 
 	@Override
 	public String toString() {
-		return "DetailContentPromotion [productId=" + productId + ", description=" + description + ", content="
-				+ content + ", promotionId=" + promotionId + "]";
+		return "DetailContentPromotion [productId=" + productId + ", displayInfoId=" + displayInfoId + ", description="
+				+ description + ", content=" + content + ", promotionId=" + promotionId + "]";
 	}
 	
 	

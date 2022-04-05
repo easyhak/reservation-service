@@ -79,7 +79,7 @@ function sendCategoryId(id){
 			// handlebar로 수정하기
 			for (var i = 0; i<2;i++){
 				text = $('#itemList').html();
-				text = text.replace('{productId}',data.productList[i].productId)
+				text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
 					.replaceAll('{description}',data.productList[i].description)
 					.replace('{saveFileName}',data.productList[i].saveFileName)
 					.replace('{placeName}',data.productList[i].placeName)
@@ -88,7 +88,7 @@ function sendCategoryId(id){
 			}
 			for (var i = 2, len = data.productList.length; i<len;i++){
 				text = $('#itemList').html();
-				text = text.replace('{productId}',data.productList[i].productId)
+				text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
 					.replaceAll('{description}',data.productList[i].description)
 					.replace('{saveFileName}',data.productList[i].saveFileName)
 					.replace('{placeName}',data.productList[i].placeName)
@@ -145,7 +145,7 @@ function moreClick(){
 				if (data.productList.length <= 2){
 					for (var i = 0, len = data.productList.length; i<len; i++){
 						text = $('#itemList').html();
-						text = text.replace('{productId}',data.productList[i].productId)
+						text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
 							.replaceAll('{description}',data.productList[i].description)
 							.replace('{saveFileName}',data.productList[i].saveFileName)
 							.replace('{placeName}',data.productList[i].placeName)
@@ -156,7 +156,7 @@ function moreClick(){
 				else if (data.productList.length > 2){
 					for (var i = 0; i<2; i++){
 						text = $('#itemList').html();
-						text = text.replace('{productId}',data.productList[i].productId)
+						text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
 							.replaceAll('{description}',data.productList[i].description)
 							.replace('{saveFileName}',data.productList[i].saveFileName)
 							.replace('{placeName}',data.productList[i].placeName)
@@ -165,7 +165,7 @@ function moreClick(){
 					}
 					for (var i = 2, len = data.productList.length; i<len;i++){
 						text = $('#itemList').html();
-						text = text.replace('{productId}',data.productList[i].productId)
+						text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
 							.replaceAll('{description}',data.productList[i].description)
 							.replace('{saveFileName}',data.productList[i].saveFileName)
 							.replace('{placeName}',data.productList[i].placeName)

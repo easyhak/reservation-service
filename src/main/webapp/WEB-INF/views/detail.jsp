@@ -59,7 +59,7 @@
                                 <ul class="visual_img detail_swipe">
                                     <c:forEach items="${detailBannerList}" var="banner">
                                     <li class="item" style="width: 414px;">
-                                        <img alt="${banner.productId}" class="img_thumb" src="${banner.saveFileName}"> 
+                                        <img alt="${banner.displayInfoId}" class="img_thumb" src="${banner.saveFileName}"> 
                                         <span class="img_bg">${banner.description}</span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">

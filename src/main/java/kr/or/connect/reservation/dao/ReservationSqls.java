@@ -23,11 +23,18 @@ public class ReservationSqls {
 			+ "FROM category, reservationdb.display_info, product "
 			+ "where product.id = display_info.product_id and category.id = product.category_id group by product.category_id";
 	
-	public static final String SELECT_DETAIL_IMAGE_BY_ID = "SELECT product.id productId, description, content, save_file_name saveFileName FROM reservationdb.product "
+	public static final String SELECT_DETAIL_IMAGE_BY_ID = "SELECT product.id productId, display_info.id displayInfoId, content, save_file_name saveFileName FROM reservationdb.product "
 			+ "left join product_image on product.id = product_id "
 			+ "left join file_info on product_image.file_id = file_info.id "
-			+ "where product.id = :id and (type = \"ma\" or type = \"et\")";
-	public static final String SELECT_CONTENT_PROMOTION_BY_ID = "SELECT product.id productId, description, content,  if (promotion.id, promotion.id, 0) promotionId FROM product "
+			+ "join display_info "
+			+ "on display_info.product_id = product.id "
+			+ "where display_info.id = :id and (type = \"ma\" or type = \"et\")";
+	
+	public static final String SELECT_CONTENT_PROMOTION_BY_ID = "SELECT product.id productId, display_info.id displayInfoId, content,  if (promotion.id, promotion.id, 0) promotionId FROM product "
 			+ "left join promotion on promotion.product_id = product.id "
-			+ "where product.id = :id";
+			+ "left join display_info on display_info.product_id = product.id "
+			+ "where display_info.id = :id";
+	
+	public static final String SELECT_RATING_BY_ID = "select if(avg(score), round(avg(score),1), 0) rating from reservation_user_comment "
+			+ "where product_id = :id";
 }

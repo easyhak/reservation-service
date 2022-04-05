@@ -95,7 +95,7 @@
                     <ul class="lst_event_box first">
                     	<c:forEach items="${productList}" var="product" end="1">
                         <li class="item">
-                            <a href="./detail?id=${product.productId}" class="item_book">
+                            <a href="./detail?id=${product.displayInfoId}" class="item_book">
                                 <div class="item_preview"> 
                                 <img alt="${product.description }" class="img_thumb" src="${product.saveFileName }">                                    
                                 <span class="img_border"></span> 
@@ -112,7 +112,7 @@
                     <ul class="lst_event_box second">
                     	<c:forEach items="${productList}" var="product" begin="2">
                         <li class="item">
-                            <a href="detail?id=${product.productId}" class="item_book">
+                            <a href="detail?id=${product.displayInfoId}" class="item_book">
                                 <div class="item_preview"> 
                                 <img alt="${product.description }" class="img_thumb" src="${product.saveFileName }">                                    
                                 <span class="img_border"></span> 
@@ -161,7 +161,7 @@
 
     <script type="rv-template" id="itemList">
 		<li class="item">
-        	<a href="detail?id={productId}" class="item_book">
+        	<a href="detail?id={displayInfoId}" class="item_book">
             	<div class="item_preview"> 
                 <img alt="{description}" class="img_thumb" src="{saveFileName}">                                    
                 <span class="img_border"></span> 
