@@ -12,6 +12,7 @@
     <link href="./css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/mainpage.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
     <script src="./js/mainpage.js" type="text/javascript" defer></script>
 </head>
 
@@ -159,16 +160,17 @@
     </li>
     </script>
 
+
     <script type="rv-template" id="itemList">
 		<li class="item">
-        	<a href="detail?id={displayInfoId}" class="item_book">
+        	<a href="detail?id={{displayInfoId}}" class="item_book">
             	<div class="item_preview"> 
-                <img alt="{description}" class="img_thumb" src="{saveFileName}">                                    
+                <img alt="{{description}}" class="img_thumb" src="{{saveFileName}}">                                    
                 <span class="img_border"></span> 
                 </div>
                 <div class="event_txt">
-                <h4 class="event_txt_tit"> <span>{description}</span> <small class="sm">{placeName}</small> </h4>
-                <p class="event_txt_dsc">{content}
+                <h4 class="event_txt_tit"> <span>{{description}}</span> <small class="sm">{{placeName}}</small> </h4>
+                <p class="event_txt_dsc">{{content}}
                 </p>
                 </div>
           	</a>

@@ -51,7 +51,6 @@ function slideShow(banner_count) {
 	//requestanimation으로 바꾸기
 }
 
-
 function tabClick(){
 	let categoryId;
 	// click할 때 anchor active 추가
@@ -76,24 +75,11 @@ function sendCategoryId(id){
 			var right = document.querySelectorAll('.lst_event_box')[1];
 			let leftText = [];
 			let rightText = [];
-			// handlebar로 수정하기
 			for (var i = 0; i<2;i++){
-				text = $('#itemList').html();
-				text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
-					.replaceAll('{description}',data.productList[i].description)
-					.replace('{saveFileName}',data.productList[i].saveFileName)
-					.replace('{placeName}',data.productList[i].placeName)
-					.replace('{content}',data.productList[i].content);
-				leftText.push(text);	
+				listTemplate(data, i, leftText);
 			}
 			for (var i = 2, len = data.productList.length; i<len;i++){
-				text = $('#itemList').html();
-				text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
-					.replaceAll('{description}',data.productList[i].description)
-					.replace('{saveFileName}',data.productList[i].saveFileName)
-					.replace('{placeName}',data.productList[i].placeName)
-					.replace('{content}',data.productList[i].content);
-				rightText.push(text);
+				listTemplate(data, i, rightText);
 			}
 			left.innerHTML = "";
 			for (var i = 0, len = leftText.length ; i < len; i++){
@@ -109,8 +95,9 @@ function sendCategoryId(id){
 			console.log(data.count);
 			console.log(countItem === data.totalCount);
 
+			//남은 개수에 따라 버튼 유무
 			if (data.totalCount - countItem <= 4 )
-				$('.btn').css("display","none")
+				$('.btn').css("display","none") 
 			else{
 				$('.btn').css("display","block");
 			}
@@ -139,38 +126,20 @@ function moreClick(){
 			success : function(data) {
 				var left = document.querySelectorAll('.lst_event_box')[0];
 				var right = document.querySelectorAll('.lst_event_box')[1];
-				let leftText = [];
-				let rightText = [];
-				//handlebar로 수정하기
+
+				let leftText = []
+				let rightText = []
 				if (data.productList.length <= 2){
 					for (var i = 0, len = data.productList.length; i<len; i++){
-						text = $('#itemList').html();
-						text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
-							.replaceAll('{description}',data.productList[i].description)
-							.replace('{saveFileName}',data.productList[i].saveFileName)
-							.replace('{placeName}',data.productList[i].placeName)
-							.replace('{content}',data.productList[i].content);
-						leftText.push(text);	
+						var { template, html } = listTemplate(data, i, leftText);
 					}
 				}
 				else if (data.productList.length > 2){
-					for (var i = 0; i<2; i++){
-						text = $('#itemList').html();
-						text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
-							.replaceAll('{description}',data.productList[i].description)
-							.replace('{saveFileName}',data.productList[i].saveFileName)
-							.replace('{placeName}',data.productList[i].placeName)
-							.replace('{content}',data.productList[i].content);
-						leftText.push(text);	
+					for (var i = 0; i<2; i++){						
+						var { template, html } = listTemplate(data, i, leftText);
 					}
 					for (var i = 2, len = data.productList.length; i<len;i++){
-						text = $('#itemList').html();
-						text = text.replace('{displayInfoId}',data.productList[i].displayInfoId)
-							.replaceAll('{description}',data.productList[i].description)
-							.replace('{saveFileName}',data.productList[i].saveFileName)
-							.replace('{placeName}',data.productList[i].placeName)
-							.replace('{content}',data.productList[i].content);
-						rightText.push(text);
+						var { template, html } = listTemplate(data, i, rightText);					
 					}
 				}
 				for (var i = 0, len = leftText.length ; i < len; i++){
@@ -179,9 +148,8 @@ function moreClick(){
 				for (var i = 0, len =  rightText.length; i < len; i++){
 					right.innerHTML += rightText[i];
 				}
-				console.log(countItem);
-				console.log(data.totalCount);
-				console.log(countItem === data.totalCount);
+				
+				//남은 개수에 따라 버튼 유무
 				if (data.totalCount - countItem <= 4 )
 					$('.btn').css("display","none");
 			},
@@ -190,5 +158,13 @@ function moreClick(){
 			}
 		});	
 	})
-	
+}
+
+// hanldebar로 템플릿 만들기
+function listTemplate(data, i, textArr) {
+	htext = $('#itemList').html();
+	var template = Handlebars.compile(htext);
+	var html = template(data.productList[i]);
+	textArr.push(html);
+	return { template, html }; //return 값은 필요없음
 }
