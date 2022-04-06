@@ -13,7 +13,6 @@ public class DetailContentPromotion {
 
 	public DetailContentPromotion(int productId, int displayInfoId, String description, String content,
 			int promotionId) {
-		super();
 		this.productId = productId;
 		this.displayInfoId = displayInfoId;
 		this.description = description;

@@ -9,12 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import kr.or.connect.reservation.dao.CategoryDao;
 import kr.or.connect.reservation.dao.DetailBannerDao;
 import kr.or.connect.reservation.dao.DetailContentPromotionDao;
+import kr.or.connect.reservation.dao.DetailLocationDao;
 import kr.or.connect.reservation.dao.ProductDisplayInfoDao;
+import kr.or.connect.reservation.dao.ReservationCommentDao;
 import kr.or.connect.reservation.dao.MainBannerDao;
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.DetailBanner;
 import kr.or.connect.reservation.dto.DetailContentPromotion;
+import kr.or.connect.reservation.dto.DetailLocation;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
+import kr.or.connect.reservation.dto.ReservationComment;
 import kr.or.connect.reservation.dto.MainBanner;
 import kr.or.connect.reservation.service.ReservationService;
 
@@ -31,8 +35,12 @@ public class ReservationServiceImpl implements ReservationService{
 	DetailBannerDao detailBannerDao;
 	@Autowired
 	DetailContentPromotionDao detailContentPromotionDao;
-	
+	@Autowired
+	ReservationCommentDao reservationCommentDao;
+	@Autowired
+	DetailLocationDao detailLocationDao;
 	@Override
+	
 	@Transactional
 	public List<ProductDisplayInfo> getAllProduct(Integer start){
 		return mainDao.selectAll(start, LIMIT);
@@ -66,5 +74,27 @@ public class ReservationServiceImpl implements ReservationService{
 	public DetailContentPromotion getContentPromotion(Integer id) {
 		return detailContentPromotionDao.selectContentPromotionById(id);
 	}
+
+	@Override
+	@Transactional
+	public List<ReservationComment> getReservationComments(Integer id) {
+		return reservationCommentDao.selectCommentList(id);
+	}
+
+	@Override
+	public double getAvgScore(Integer id) {
+		return reservationCommentDao.getAvgScore(id);
+	}
+
+	@Override
+	public int getTotalCommentCount(Integer id) {
+		return reservationCommentDao.getTotalCommentCount(id);
+	}
+
+	@Override
+	public DetailLocation getLocationInfo(Integer id) {
+		return detailLocationDao.getLocationInfoById(id);
+	}
+	
 	
 }

@@ -1,5 +1,6 @@
 package kr.or.connect.reservation.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.or.connect.reservation.dto.Category;
 import kr.or.connect.reservation.dto.DetailBanner;
 import kr.or.connect.reservation.dto.DetailContentPromotion;
+import kr.or.connect.reservation.dto.DetailLocation;
 import kr.or.connect.reservation.dto.ProductDisplayInfo;
+import kr.or.connect.reservation.dto.ReservationComment;
 import kr.or.connect.reservation.dto.MainBanner;
 import kr.or.connect.reservation.service.ReservationService;
 import kr.or.connect.reservation.service.impl.ReservationServiceImpl;
@@ -100,17 +103,37 @@ public class ReservationController {
 	
 	@GetMapping(path = "/detail")
 	public String detailPage(HttpServletRequest request, ModelMap modelMap) {
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("id")); //여기 오류
 		List<DetailBanner> detailBannerList = reservationService.getDetailBanners(id);
 		DetailContentPromotion contentPromtion = reservationService.getContentPromotion(id);
-		
-		String content = contentPromtion.getContent();
-		int promotionId = contentPromtion.getPromotionId();
+		List<ReservationComment> reservationCommentList = reservationService.getReservationComments(id);
+		DetailLocation detailLocation = reservationService.getLocationInfo(id);
+		int commentCount = reservationService.getTotalCommentCount(id);
+		double avgScore = reservationService.getAvgScore(id);
+		System.out.println(contentPromtion.getDescription());
 		
 		modelMap.addAttribute("detailBannerList",detailBannerList);
-		modelMap.addAttribute("content",content);
-		modelMap.addAttribute("promotion",promotionId);
+		modelMap.addAttribute("contentPromotion",contentPromtion);
+		modelMap.addAttribute("commentList",reservationCommentList);
+		modelMap.addAttribute("commentCount",commentCount);
+		modelMap.addAttribute("avgScore",avgScore);
+		modelMap.addAttribute("detailLocation",detailLocation);
 		
 		return "detail";
+	}
+	@GetMapping(path = "/review")
+	public String reviewPage(HttpServletRequest request, ModelMap modelMap) {
+		int id = Integer.parseInt(request.getParameter("id")); //여기 오류
+		List<DetailBanner> detailBannerList = reservationService.getDetailBanners(id);
+		List<ReservationComment> reservationCommentList = reservationService.getReservationComments(id);
+		int commentCount = reservationService.getTotalCommentCount(id);
+		double avgScore = reservationService.getAvgScore(id);
+	
+		modelMap.addAttribute("productId",id); // 나중에 수정
+		modelMap.addAttribute("detailBannerList",detailBannerList);
+		modelMap.addAttribute("commentList",reservationCommentList);
+		modelMap.addAttribute("commentCount",commentCount);
+		modelMap.addAttribute("avgScore",avgScore);
+		return "review";
 	}
 }

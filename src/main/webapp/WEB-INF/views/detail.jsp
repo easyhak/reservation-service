@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -15,6 +15,7 @@
     <link href="./css/detailpage.css" rel="stylesheet" >
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
     <script src="./js/detailpage.js" type="text/javascript" defer></script>
+    <script src="./js/common.js" type="text/javascript" defer></script>
     <style>
         .container_visual {
             height: 414px;
@@ -63,7 +64,7 @@
                                         <span class="img_bg">${banner.description}</span>
                                         <div class="visual_txt">
                                             <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"><span>${banner.description}</span> </h2>
+                                                <h2 class="visual_txt_tit"><span>${banner.description}</span></h2>
                                                 <p class="visual_txt_dsc"></p>
                                             </div>
                                         </div>
@@ -104,14 +105,14 @@
                     <!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
                     <div class="store_details close3">
                         <p class="dsc">
-                            ${content}
+                            ${contentPromotion.content}
                         </p>
                     </div>
                     <!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->
                     <a href="javascript:void(0)" class="bk_more _open"> <span class="bk_more_txt">펼쳐보기</span> <i class="fn fn-down2"></i> </a>
                     <a href="javascript:void(0)" class="bk_more _close" style="display: none;"> <span class="bk_more_txt">접기</span> <i class="fn fn-up2"></i> </a>
                 </div>
-                <c:if test="${promotion ne 0}" > <!-- 이벤트가 있으면 보이게 한다 -->
+                <c:if test="${contentPromotion.promotionId ne 0}" > <!-- 이벤트가 있으면 보이게 한다 -->
                 <div class="section_event">
                     <div class="event_info_box">
                         <div class="event_info_tit">
@@ -130,60 +131,47 @@
                         <div class="short_review_area">
                             <div class="grade_area">
                                 <!-- [D] 별점 graph_value는 퍼센트 환산하여 width 값을 넣어줌 -->
-                                <span class="graph_mask"> <em class="graph_value" style="width: 84%;"></em> </span>
-                                <strong class="text_value"> <span>4.2</span> <em class="total">5.0</em> </strong>
-                                <span class="join_count"><em class="green">52건</em> 등록</span>
+                                <span class="graph_mask"> <em class="graph_value" style="width: ${avgScore*20}%;"></em> </span>
+                                <strong class="text_value"> <span>${avgScore}</span> <em class="total">5.0</em> </strong>
+                                <span class="join_count"><em class="green">${commentCount}</em> 등록</span>
                             </div>
                             <ul class="list_short_review">
+                                <c:forEach items="${commentList}" var="commentInfo" end="2">
                                 <li class="list_item">
                                     <div>
                                         <div class="review_area">
                                             <div class="thumb_area">
-                                                <a href="#" class="thumb" title="이미지 크게 보기"> <img width="90" height="90" class="img_vertical_top" src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" alt="리뷰이미지"> </a> <span class="img_count" style="display:none;">1</span>                                                </div>
-                                            <h4 class="resoc_name"></h4>
-                                            <p class="review">2층이어서 걱정했는데 꽤잘보여서 좋았습니다 고미오 너무 멋있었습니다 사진은 커튼콜때 찍었습니다 끝나고 퇴근길도 봐서 너무 좋았어요</p>
+                                                <!--
+                                                <a href="#" class="thumb" title="이미지 크게 보기">
+                                                     왜 지도 이미지를 불러오게 되어있지? 
+                                                    <img width="90" height="90" class="img_vertical_top" src="http://naverbooking.phinf.naver.net/20170306_3/1488772023601A4195_JPEG/image.jpg?type=f300_300" alt="리뷰이미지">
+                                                </a> 
+                                                -->
+                                                <span class="img_count" style="display:none;">1</span>
+                                            </div>
+                                            <h4 class="resoc_name">${contentPromotion.description}</h4>
+                                            <p class="review">${commentInfo.comment}</p>
                                         </div>
                                         <div class="info_area">
-                                            <div class="review_info"> <span class="grade">4.0</span> <span class="name">dbfl****</span> <span class="date">2017.3.5. 방문</span> </div>
+                                            <div class="review_info"> <span class="grade">${commentInfo.score}</span> <span class="name">${commentInfo.reservationName}</span> <span class="date"><fmt:formatDate value="${commentInfo.createDate}" pattern="yyyy.MM.dd. "/>방문</span> </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list_item">
-                                    <div>
-                                        <div class="review_area no_img">
-                                            <h4 class="resoc_name"></h4>
-                                            <p class="review">너무 재밌게봤구요~<br>마지막공연 후 뒷풀이도 잘봤습니다</p>
-                                        </div>
-                                        <div class="info_area">
-                                            <div class="review_info"> <span class="grade">5.0</span> <span class="name">yyck****</span> <span class="date">2017.3.5. 방문</span> </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list_item">
-                                    <div>
-                                        <div class="review_area no_img">
-                                            <h4 class="resoc_name"></h4>
-                                            <p class="review">좋은 공연이었습니다. <br>머큐쇼역활 하신분의 열창이 기억에 남는 반면에,,, 로미오는 별로 기억에 남지 않네요..</p>
-                                        </div>
-                                        <div class="info_area">
-                                            <div class="review_info"> <span class="grade">4.0</span> <span class="name">xero****</span> <span class="date">2017.3.4. 방문</span> </div>
-                                        </div>
-                                    </div>
-                                </li>
+                                </c:forEach>    
                             </ul>
                         </div>
                         <p class="guide"> <i class="spr_book2 ico_bell"></i> <span>네이버 예약을 통해 실제 방문한 이용자가 남긴 평가입니다.</span> </p>
                     </div>
-                    <a class="btn_review_more" href="./review.html"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
+                    <a class="btn_review_more" href="./review.html?id=${contentPromotion.productId}"> <span>예매자 한줄평 더보기</span> <i class="fn fn-forward1"></i> </a>
                 </div>
                 <div class="section_info_tab">
                     <!-- [D] tab 선택 시 anchor에 active 추가 -->
                     <ul class="info_tab_lst">
                         <li class="item active _detail">
-                            <a href="#" class="anchor active"> <span>상세정보</span> </a>
+                            <a href="javascript:void(0)" class="anchor active"> <span>상세정보</span> </a>
                         </li>
                         <li class="item _path">
-                            <a href="#" class="anchor"> <span>오시는길</span> </a>
+                            <a href="javascript:void(0)" class="anchor"> <span>오시는길</span> </a>
                         </li>
                     </ul>
                     <!-- [D] 상세정보 외 다른 탭 선택 시 detail_area_wrap에 hide 추가 -->
@@ -195,6 +183,7 @@
                                     <li class="detail_info_lst">
                                         <strong class="in_tit">[소개]</strong>
                                         <p class="in_dsc">
+                                            ${contentPromotion.content}
                                         </p>
                                     </li>
                                     <li class="detail_info_lst"> <strong class="in_tit">[공지사항]</strong>
@@ -215,24 +204,32 @@
                     <div class="detail_location hide">
                         <div class="box_store_info no_topline">
                             <a href="#" class="store_location" title="지도웹으로 연결">
-                                <img class="store_map img_thumb" alt="map" src="https://simg.pstatic.net/static.map/image?version=1.1&amp;crs=EPSG:4326&amp;baselayer=bl_vc_bg&amp;exception=xml&amp;scale=2&amp;caller=mw_smart_booking&amp;overlayers=ol_vc_an&amp;center=127.0011948,37.5717079&amp;markers=type,default2,127.0011948,37.5717079&amp;level=11&amp;w=340&amp;h=150">
+                                <img class="store_map img_thumb" alt="map" src="${detailLocation.mapImage}">
                                 <span class="img_border"></span>
                                 <span class="btn_map"><i class="spr_book2 ico_mapview"></i></span>
                             </a>
-                            <h3 class="store_name">엔에이치엔티켓링크(주)</h3>
+                            <h3 class="store_name">${contentPromotion.description}</h3>
                             <div class="store_info">
                                 <div class="store_addr_wrap">
                                     <span class="fn fn-pin2"></span>
-                                    <p class="store_addr store_addr_bold">서울특별시 종로구 종로33길 15 </p>
+                                    <p class="store_addr store_addr_bold">${detailLocation.placeStreet}</p>
                                     <p class="store_addr">
                                         <span class="addr_old">지번</span>
-                                        <span class="addr_old_detail">서울특별시 종로구 연지동 270 </span>
+                                        <span class="addr_old_detail">${detailLocation.placeLot}</span>
                                     </p>
-                                    <p class="store_addr addr_detail">두산아트센터 연강홀</p>
+                                    <p class="store_addr addr_detail">${detailLocation.placeName}</p>
                                 </div>
                                 <div class="lst_store_info_wrap">
                                     <ul class="lst_store_info">
-                                        <li class="item"> <span class="item_lt"> <i class="fn fn-call2"></i> <span class="sr_only">전화번호</span> </span> <span class="item_rt"> <a href="tel:02-548-0597" class="store_tel">02-548-0597</a></span> </li>
+                                        <li class="item"> 
+                                            <span class="item_lt"> 
+                                                <i class="fn fn-call2"></i> 
+                                                <span class="sr_only">전화번호</span> 
+                                            </span> 
+                                            <span class="item_rt"> 
+                                                <a href="tel:${detailLocation.tel}" class="store_tel">${detailLocation.tel}</a>
+                                            </span> 
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -249,7 +246,7 @@
     </div>
     <footer>
         <div class="gototop">
-            <a href="#" class="lnk_top"> <span class="lnk_top_text">TOP</span> </a>
+            <a href="javascript:void(0)" class="lnk_top"> <span class="lnk_top_text">TOP</span> </a>
         </div>
         <div class="footer">
             <p class="dsc_footer">네이버(주)는 통신판매의 당사자가 아니며, 상품의정보, 거래조건, 이용 및 환불 등과 관련한 의무와 책임은 각 회원에게 있습니다.${id}</p>
