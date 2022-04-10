@@ -14,6 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
     <script src="./js/mainpage.js" type="text/javascript" defer></script>
+    <script src="./js/common.js" type="text/javascript" defer></script>
 </head>
 
 <body>

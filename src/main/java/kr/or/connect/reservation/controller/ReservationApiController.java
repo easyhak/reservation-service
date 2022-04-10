@@ -57,4 +57,11 @@ public class ReservationApiController {
 		List<MainBanner> items = reservationService.getMainBanners();
 		return items;
 	}
+	@GetMapping("reservations")
+	public Map<String, Object> reservations(@RequestParam(name = "reservationEmail", required = true) String reservationEmail){
+		
+		
+		Map<String, Object> map = new HashMap<>();
+		return map;
+	}
 }

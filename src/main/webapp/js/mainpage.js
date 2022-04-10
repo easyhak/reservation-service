@@ -12,6 +12,7 @@ $.ajax({
 	}
 });	
 // 이런 식으로 jsp 파일에 jstl넣지 않고 ajax로 초기값 가져오도록 수정하도록 한다. 
+
 $(function(){
 	let banner_count = $('.visual_img').children().length;
 	console.log(banner_count)
@@ -23,15 +24,6 @@ $(function(){
 	moreClick();
 })
 
-let Top = document.querySelector('.gototop')
-
-Top.addEventListener('click',function(e){
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-})
 function slideShow(banner_count) {
 	num = 1;
 	setInterval(function(){
@@ -81,6 +73,7 @@ function sendCategoryId(id){
 			for (var i = 2, len = data.productList.length; i<len;i++){
 				listTemplate(data, i, rightText);
 			}
+
 			left.innerHTML = "";
 			for (var i = 0, len = leftText.length ; i < len; i++){
 				left.innerHTML += leftText[i];
@@ -148,7 +141,7 @@ function moreClick(){
 				for (var i = 0, len =  rightText.length; i < len; i++){
 					right.innerHTML += rightText[i];
 				}
-				
+
 				//남은 개수에 따라 버튼 유무
 				if (data.totalCount - countItem <= 4 )
 					$('.btn').css("display","none");
