@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -57,11 +58,12 @@ public class ReservationApiController {
 		List<MainBanner> items = reservationService.getMainBanners();
 		return items;
 	}
-	@GetMapping("reservations")
+	@GetMapping("/reservations")
 	public Map<String, Object> reservations(@RequestParam(name = "reservationEmail", required = true) String reservationEmail){
 		
 		
 		Map<String, Object> map = new HashMap<>();
 		return map;
 	}
+
 }
