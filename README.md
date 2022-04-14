@@ -52,8 +52,8 @@
 
 <div align = "center">
  
-![상세 페이지](https://user-images.githubusercontent.com/48908552/163417018-29da5690-9f03-42cc-86bc-c3af0cb4e69f.gif)
- 
+![상세](https://user-images.githubusercontent.com/48908552/163418095-12da45a0-9a3a-4cd7-aa68-0772bea58d11.gif)
+
    </div>
 
 
