@@ -12,7 +12,7 @@
 - java 16.0.1
 - apache-tomcat 8.5.73
 - Spring 4.3.5.RELEASE
-- maven 3.8.4
+- maven
 - mariaDB 
 
 <div align = "center">
